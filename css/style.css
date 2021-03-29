@@ -1,89 +1,85 @@
-
+/* 
 body {
     width: 100%;
     line-height: 1;
 }
 #buttom-section{
     width: 100%;
-}
-button {
-    position: relative;
-    width: 43%;
-    height: 118px;
-    font-size: 61px;
-    margin-top: 61px;
-    left: 226px;
-}
+}*/
 #head-1{
     display: inline;
 }
+header {
+    padding: 20px;
+    display: block;
+    border-bottom: 2px solid black;
+}
+
 #head-1 img {
-    width: 9%;
+    width: 8%;
     position: relative;
-    left: 75px;
-    top: 10px;
+    left: 60px;
+    top: 3px;
 }
 #head-1 h1 {
-    width: 87%;
-    position: relative;
-    font-size: 115px;
-    left: 517px;
-    bottom: 223px;
+    width: 48%;
+    position: absolute;
+    font-size: 45px;
+    left: 235px;
+    top: 41px;
     color: blueviolet;
 }
-
-
 div#image-section {
-    width: 76%;
-    /* display: inherit; */
-    position: relative;
-    border: 1px solid black;
-    float: right;
+    display: block;
+    
 }
-div#image-section img {
-    display: inline;
-    border: 2px solid red;
-    width: 935px;
+section#image-section {
     float: right;
-    position: relative;
-    height: 761px;
-    right: -82px;
-    margin-right: 84px;
+    width: 100%;
+}
+section#image-section img {
+    float: right;
+    width: 330px;
+    height: 330px;
+    padding: 11px;
+    border: 2px solid red;
 }
 section#buttom-section {
-    width: 963px;
-    position: relative;
-    height: 1489px;
+    display: block;
+    float: left;
     border: 2px solid green;
+    width: 277px;
+    height: 537px;
+    position: absolute;
 }
-ol, ul {
+button {
+    position: absolute;
+    width: 52%;
+    height: 59px;
+    font-size: 25px;
+    margin-top: 18px;
+    left: 60px;
+}
+ul {
+    display: block;
+    position: relative;
     list-style: inside;
-    position: inherit;
-    font-size: -3px;
+    top: 85px;
+    font-size: 15px;
 }
-li{
-    font-size: 52px;
+p#para {
+    display: block;
+    float: right;
+    border: 2px solid red;
+    width: 74%;
+    margin-top: 43px;
+    font-size: 24px;
+    padding: 33px;
+    margin-bottom: 61px;
 }
-#para {
-    position: relative;
-    font-size: 96px;
-    border: 3px solid;
-    width: 75%;
-    left: 967px;
-    bottom: 474px;
-    height: 469px;
-}
-p{
-    font-size: 60px;
-}
-main h1 {
-    /* background-color: black; */
-    font-size: 120px;
-    bottom: 473px;
-    width: 99%;
-    height: 171px;
-    /* color: white; */
-    text-align: center;
-    position: relative;
-    border: 2px solid cyan;
+element.style {
+    display: block;
+    width: 1306px;
+    height: 496px;
+    
 }
