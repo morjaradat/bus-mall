@@ -12,6 +12,7 @@ buttom.textContent = ('view result');
 document.getElementById('result-button').style.visibility = 'hidden';
 let vote = [];
 let view = [];
+let indexArray=[];
 let leftArray=[];
 let middleArray=[];
 let rightArray=[];
@@ -44,58 +45,73 @@ function render() {
   leftIndex = randomNumber(0, Busmall.all.length - 1);
   middleIndex = randomNumber(0, Busmall.all.length - 1);
   rightIndex = randomNumber(0, Busmall.all.length - 1);
-  check();
-  while (leftIndex === middleIndex || leftIndex === rightIndex) {
-    leftIndex = randomNumber(0, Busmall.all.length - 1);
+
+  if (leftIndex===middleIndex||leftIndex===rightIndex||middleIndex===rightIndex){
+    render();
+    console.log('no',leftIndex,middleIndex,rightIndex);
+  }else if (indexArray.includes(rightIndex)||indexArray.includes(middleIndex)||indexArray.includes(leftIndex)){
+    render();
+    console.log('check',rightIndex);
+  }else
+  {
+    indexArray=[];
+    indexArray.push(leftIndex);
+    indexArray.push(middleIndex);
+    indexArray.push(rightIndex);
+    console.log(leftArray,middleArray,rightArray);
+    console.log(leftIndex,middleIndex,rightIndex);
+    // console.log();
+    // console.log();
+    leftImage.src = Busmall.all[leftIndex].path;
+    leftImage.alt = Busmall.all[leftIndex].name;
+    leftImage.title = Busmall.all[leftIndex].name;
+
+    middleImage.src = Busmall.all[middleIndex].path;
+    middleImage.alt = Busmall.all[middleIndex].name;
+    middleImage.title = Busmall.all[middleIndex].name;
+
+    rightImage.src = Busmall.all[rightIndex].path;
+    rightImage.alt = Busmall.all[rightIndex].name;
+    rightImage.title = Busmall.all[rightIndex].name;
+
   }
-
-  while (middleIndex === leftIndex || middleIndex === rightIndex) {
-    middleIndex = randomNumber(0, Busmall.all.length - 1);
-  }
-
-  while (rightIndex === leftIndex || rightIndex === middleIndex) {
-    rightIndex = randomNumber(0, Busmall.all.length - 1);
-  }
-  leftArray.push(leftIndex);
-  middleArray.push(middleIndex);
-  rightArray.push(rightIndex);
-
-  check(leftArray,middleArray,rightArray);
-
-
-  console.log(leftArray,middleArray,rightArray);
-  console.log(leftIndex,middleIndex,rightIndex);
-  // console.log();
-  // console.log();
-  leftImage.src = Busmall.all[leftIndex].path;
-  leftImage.alt = Busmall.all[leftIndex].name;
-  leftImage.title = Busmall.all[leftIndex].name;
-
-  middleImage.src = Busmall.all[middleIndex].path;
-  middleImage.alt = Busmall.all[middleIndex].name;
-  middleImage.title = Busmall.all[middleIndex].name;
-
-  rightImage.src = Busmall.all[rightIndex].path;
-  rightImage.alt = Busmall.all[rightIndex].name;
-  rightImage.title = Busmall.all[rightIndex].name;
-
-  // return leftIndex, rightIndex, middleIndex;
-  // console.log(leftIndex);
-  // console.log(middleIndex);
-  // console.log(rightIndex);
 }
+
+
+
+
+// check(leftArray,middleArray,rightArray);
+
+
+
+// return leftIndex, rightIndex, middleIndex;
+// console.log(leftIndex);
+// console.log(middleIndex);
+// console.log(rightIndex);
+
 render();
+// while (leftIndex === middleIndex || leftIndex === rightIndex) {
+//   leftIndex = randomNumber(0, Busmall.all.length - 1);
+// }
 
-function check(x1,x2,x3){
-  if (leftIndex===x1||leftIndex===x3||leftIndex===x2){
-    while(leftIndex===leftArray||middleIndex===middleArray||leftIndex===rightArray||middleIndex===rightArray){
-      leftIndex = randomNumber(0, Busmall.all.length - 1);
-      middleIndex = randomNumber(0, Busmall.all.length - 1);
-      rightIndex = randomNumber(0, Busmall.all.length - 1);
+// while (middleIndex === leftIndex || middleIndex === rightIndex) {
+//   middleIndex = randomNumber(0, Busmall.all.length - 1);
+// }
 
-    }console.log('left', leftIndex);
-  }return leftIndex,middleIndex,rightIndex;
-}
+// while (rightIndex === leftIndex || rightIndex === middleIndex) {
+//   rightIndex = randomNumber(0, Busmall.all.length - 1);
+// }
+
+// function check(x1,x2,x3){
+//   if (leftIndex===x1||leftIndex===x3||leftIndex===x2){
+//     while(leftIndex===leftArray||middleIndex===middleArray||leftIndex===rightArray||middleIndex===rightArray){
+//       leftIndex = randomNumber(0, Busmall.all.length - 1);
+//       middleIndex = randomNumber(0, Busmall.all.length - 1);
+//       rightIndex = randomNumber(0, Busmall.all.length - 1);
+
+//     }console.log('left', leftIndex);
+//   }return leftIndex,middleIndex,rightIndex;
+// }
 // if(middleIndex===x1||middleIndex===x2||middleIndex===x3){
 //   while(middleIndex===leftArray||middleIndex===middleArray||middleIndex===rightArray){
 //     middleIndex = randomNumber(0, Busmall.all.length - 1);
