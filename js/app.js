@@ -5,20 +5,17 @@ const leftImage = document.getElementById('left-image');
 const rightImage = document.getElementById('right-image');
 const middleImage = document.getElementById('middle-image');
 const buttomSection = document.getElementById('buttom-section');
+let vote = [];
+let view = [];
+let indexArray=[];
+let leftIndex;
+let middleIndex;
+let rightIndex;
 let buttom = document.createElement('button');
 buttom.setAttribute('id', 'result-button');
 buttomSection.appendChild(buttom);
 buttom.textContent = ('view result');
 document.getElementById('result-button').style.visibility = 'hidden';
-let vote = [];
-let view = [];
-let indexArray=[];
-let leftArray=[];
-let middleArray=[];
-let rightArray=[];
-let leftIndex;
-let middleIndex;
-let rightIndex;
 
 
 function Busmall(name) {
@@ -27,9 +24,24 @@ function Busmall(name) {
   this.vote = 0;
   this.view = 0;
   Busmall.all.push(this);
+  // settingItem();
 }
 Busmall.all = [];
-// console.log(Busmall.all);
+
+function settingItem(){
+  let data =JSON.stringify(Busmall.all);
+  localStorage.setItem('product',data);
+  // sessionStorage.setItem('product',data);
+}
+
+function gettingItem(){
+  let stringObj=localStorage.getItem('product');
+  let normalObj=JSON.parse(stringObj);
+  if (normalObj !== null){
+    Busmall.all =normalObj;
+  }
+  // render();
+}
 
 for (let i = 0; i < names.length; i++) {
   new Busmall(names[i]);
@@ -48,20 +60,19 @@ function render() {
 
   if (leftIndex===middleIndex||leftIndex===rightIndex||middleIndex===rightIndex){
     render();
-    console.log('no',leftIndex,middleIndex,rightIndex);
+    // console.log('no',leftIndex,middleIndex,rightIndex);
   }else if (indexArray.includes(rightIndex)||indexArray.includes(middleIndex)||indexArray.includes(leftIndex)){
     render();
-    console.log('check',rightIndex);
+    // console.log('check',rightIndex);
   }else
   {
     indexArray=[];
     indexArray.push(leftIndex);
     indexArray.push(middleIndex);
     indexArray.push(rightIndex);
-    console.log(leftArray,middleArray,rightArray);
-    console.log(leftIndex,middleIndex,rightIndex);
-    // console.log();
-    // console.log();
+    // console.log(leftArray,middleArray,rightArray);
+    // console.log(leftIndex,middleIndex,rightIndex);
+
     leftImage.src = Busmall.all[leftIndex].path;
     leftImage.alt = Busmall.all[leftIndex].name;
     leftImage.title = Busmall.all[leftIndex].name;
@@ -78,7 +89,7 @@ function render() {
 }
 
 
-
+render();
 
 // check(leftArray,middleArray,rightArray);
 
@@ -89,7 +100,7 @@ function render() {
 // console.log(middleIndex);
 // console.log(rightIndex);
 
-render();
+
 // while (leftIndex === middleIndex || leftIndex === rightIndex) {
 //   leftIndex = randomNumber(0, Busmall.all.length - 1);
 // }
@@ -131,6 +142,7 @@ let numberOfClicks = 0;
 imageSection.addEventListener('click', handleClick);
 
 function handleClick(event) {
+  event.preventDefault();
   if (event.target.id !== 'image-section') {
     if (event.target.id === leftImage.id) {
       Busmall.all[leftIndex].vote++;
@@ -151,9 +163,6 @@ function handleClick(event) {
       Busmall.all[leftIndex].view++;
       numberOfClicks++;
     }
-    middleArray.shift();
-    rightArray.shift();
-    leftArray.shift();
     render();
     // console.log(numberOfClicks);
   }
@@ -169,10 +178,11 @@ const resultButton = document.getElementById('result-button');
 
 resultButton.addEventListener('click', buttomList);
 
-function buttomList() {
+function buttomList(event) {
+  event.preventDefault();
   const ulEle = document.createElement('ul');
   buttomSection.appendChild(ulEle);
-
+  settingItem();
   for (let i = 0; i < Busmall.all.length; i++) {
     const liEle = document.createElement('li');
     ulEle.appendChild(liEle);
@@ -181,10 +191,11 @@ function buttomList() {
     view.push(Busmall.all[i].view);
     resultButton.removeEventListener('click', buttomList);
     chartRender();
-    console.log('vote', vote);
-    console.log('view', view);
+    // console.log('vote', vote);
+    // console.log('view', view);
   }
 }
+
 function chartRender() {
   let ctx = document.getElementById('myChart').getContext('2d');
   let chart = new Chart(ctx, {
@@ -212,3 +223,4 @@ function chartRender() {
     options: {}
   });
 }
+gettingItem();
